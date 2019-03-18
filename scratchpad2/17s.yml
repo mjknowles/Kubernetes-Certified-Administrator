@@ -1,0 +1,7 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: seventeen-service
+spec:
+  type: ExternalName
+  externalName:  seventeen-service-two

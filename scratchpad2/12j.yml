@@ -1,0 +1,14 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: 12j
+spec:
+  completions: 20
+  parallelism: 5
+  template:
+    spec:
+      containers:
+      - image: perl
+        name: 12j
+        command: ["perl", "-Mbignum=bpi", "-wle", "print 'Hello parallel world'"]
+      restartPolicy: OnFailure

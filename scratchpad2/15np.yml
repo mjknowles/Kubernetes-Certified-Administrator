@@ -1,0 +1,13 @@
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: fifteen-access-nginx
+spec:
+  podSelector:
+    matchLabels:
+      app: 15d
+  ingress:
+  - from:
+    - podSelector:
+        matchLabels:
+          access: "true"

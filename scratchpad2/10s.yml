@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: 10s
+type: Opaque
+data:
+  username: bWtub3dsZXM=
+  password: bXlwYXNzd29yZA==

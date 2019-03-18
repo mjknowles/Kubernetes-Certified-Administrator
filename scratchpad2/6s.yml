@@ -1,0 +1,19 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: sixservice
+spec:
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 9376
+---
+kind: Endpoints
+apiVersion: v1
+metadata:
+  name: 6-endpoint
+subsets:
+- addresses:
+  - ip: 1.1.1.1
+  ports:
+  - port: 9376

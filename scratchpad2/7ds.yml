@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: 7ds
+spec:
+  selector:
+    matchLabels:
+      name: 7ds
+  template:
+    metadata:
+      labels:
+        name: 7ds
+    spec:
+      tolerations:
+      - key: node-role.kubernetes.io/master
+        effect: NoSchedule
+      containers:
+      - image: nginx:1.13.8
+        imagePullPolicy: IfNotPresent
+        name: 7ds
+  updateStrategy:
+    rollingUpdate:
+      maxUnavailable: 1
+  minReadySeconds: 30

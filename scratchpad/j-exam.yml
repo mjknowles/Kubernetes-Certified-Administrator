@@ -1,0 +1,15 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: j-exam
+spec:
+  template:
+    spec:
+      containers:
+      - name: j-exam
+        image: nginx
+        command: ["echo", "hello"]
+      restartPolicy: Never
+  backoffLimit: 4
+  completions: 80
+  parallelism: 5

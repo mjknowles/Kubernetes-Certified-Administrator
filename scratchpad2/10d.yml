@@ -1,0 +1,36 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: 10d
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: 10d
+  template:
+    metadata:
+      labels:
+        app: 10d
+    spec:
+      containers:
+      - image: nginx
+        name: 10d
+        env:
+        - name: SECRET_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: 10s
+              key: username
+        - name: SECRET_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: 10s
+              key: password
+        volumeMounts:
+        - name: secretvol
+          mountPath: "/etc/secretvol"
+          readOnly: true
+      volumes:
+      - name: secretvol
+        secret:
+          secretName: 10s

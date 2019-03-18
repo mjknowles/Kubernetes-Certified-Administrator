@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: 14d
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: 14d
+  template:
+    metadata:
+      labels:
+        app: 14d
+    spec:
+      containers:
+      - image: nginx
+        name: 14d

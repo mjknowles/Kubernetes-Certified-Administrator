@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: 13d
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: 13d
+  template:
+    metadata:
+      labels:
+        app: 13d
+    spec:
+      containers:
+      - image: nginx
+        name: 13d

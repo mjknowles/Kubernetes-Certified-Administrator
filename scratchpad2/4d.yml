@@ -1,0 +1,55 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  generation: 1
+  name: 4d
+  selfLink: /apis/extensions/v1beta1/namespaces/default/deployments/3d
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 2
+  selector:
+    matchLabels:
+      app: 4d
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: 4d
+    spec:
+      containers:
+      - image: nginx:1.12.2
+        imagePullPolicy: IfNotPresent
+        name: 4d
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /empty
+          name: empty-volume
+        - mountPath: /hostvol
+          name: host-volume
+        - mountPath: /pervol
+          name: persistent-volume
+      volumes:
+      - name: empty-volume
+        emptyDir: {}
+      - name: host-volume
+        hostPath:
+          path: /data
+          type: Directory
+      - name: persistent-volume
+        persistentVolumeClaim:
+          claimName: 4-pvc
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+status: {}
